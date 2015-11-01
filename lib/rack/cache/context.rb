@@ -296,7 +296,7 @@ module Rack::Cache
       if @env['rack.logger']
         @env['rack.logger'].send(level, message)
       else
-        @env['rack.errors'].write(message)
+        @env['rack.errors'].write(message) unless @env['rack.errors'].closed?
       end
     end
 
